@@ -1,0 +1,7 @@
+image: /home/robomuse/catkin_ws/src/robomuse-ros-master/robomuse_drivers/maps/vidcap.pgm
+resolution: 0.050000
+origin: [-16.641436, -19.490660, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+
