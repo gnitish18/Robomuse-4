@@ -13,10 +13,10 @@ int main(int argc, char** argv){
   move_base_msgs::MoveBaseGoal goal;
   goal.target_pose.header.frame_id = "map";
   goal.target_pose.header.stamp = ros::Time::now();
-  goal.target_pose.pose.position.x = -14.319;
-  goal.target_pose.pose.position.y = 3.6516;
-  goal.target_pose.pose.orientation.z = 0.9535;
-  goal.target_pose.pose.orientation.w = 0.3212;
+  goal.target_pose.pose.position.x = -0.95;
+  goal.target_pose.pose.position.y = 0.020;
+  goal.target_pose.pose.orientation.z = -0.953;
+  goal.target_pose.pose.orientation.w = -0.3023;
   ROS_INFO("Sending goal");
   ac.sendGoal(goal);
   ac.waitForResult();

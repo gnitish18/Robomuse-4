@@ -1,0 +1,7 @@
+image: /home/srike27/catkin_ws/src/robomuse-ros-master/robomuse_drivers/maps.pgm
+resolution: 0.050000
+origin: [-5.525000, -8.253828, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

@@ -10,8 +10,8 @@ DWAPlannerROS:
     holonomic_robot: false
 
     # Goal Tolerance Parameters
-    xy_goal_tolerance: 0.4
-    yaw_goal_tolerance: 0.9
+    xy_goal_tolerance: 0.2
+    yaw_goal_tolerance: 0.2
     latch_xy_goal_tolerance: true
 
     # Forward Simulation Parameters
@@ -24,7 +24,7 @@ DWAPlannerROS:
 
     path_distance_bias: 40.0
     goal_distance_bias: 32.0
-    occdist_scale: 0.01
+    occdist_scale: 0.005
     forward_point_distance: 0.2
     stop_time_buffer: 0.2
     scaling_speed: 0.15

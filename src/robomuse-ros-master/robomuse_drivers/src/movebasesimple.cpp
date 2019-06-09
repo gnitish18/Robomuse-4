@@ -28,6 +28,31 @@ int main(int argc, char** argv){
     ROS_INFO("not reached");
   goal.target_pose.header.frame_id = "map";
   goal.target_pose.header.stamp = ros::Time::now();
+  goal.target_pose.pose.position.x = 3.0;
+  goal.target_pose.pose.position.y = -3.0;
+  goal.target_pose.pose.orientation.w = 1.0;
+  ROS_INFO("Sending goal");
+  ac.sendGoal(goal);
+  ac.waitForResult();
+  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+    ROS_INFO("reached");
+  else
+    ROS_INFO("not reached");
+  goal.target_pose.header.frame_id = "map";
+  goal.target_pose.header.stamp = ros::Time::now();
+  goal.target_pose.pose.position.x = 0.0;
+  goal.target_pose.pose.position.y = -3.0;
+  goal.target_pose.pose.orientation.w = 1.0;
+  ROS_INFO("Sending goal");
+  ac.sendGoal(goal);
+  ac.waitForResult();
+  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+    ROS_INFO("reached");
+  else
+    ROS_INFO("not reached");
+    ROS_INFO("not reached");
+  goal.target_pose.header.frame_id = "map";
+  goal.target_pose.header.stamp = ros::Time::now();
   goal.target_pose.pose.position.x = 0.0;
   goal.target_pose.pose.position.y = 0.0;
   goal.target_pose.pose.orientation.w = 1.0;
