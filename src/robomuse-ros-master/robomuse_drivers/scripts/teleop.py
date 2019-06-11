@@ -29,10 +29,10 @@ CTRL-C to quit
 moveBindings = {
 #x,y,tetha ratio
 		'w':(1,0,0), 	# forwards
-		'q':(1,0,-1), 	# forwards + rotation right
+		'e':(1,0,-1), 	# forwards + rotation right
 		'1':(0,1,0), 	# left
 		'3':(0,-1,0),	# right
-		'e':(1,0,1), 	# forwards + rotation left
+		'q':(1,0,1), 	# forwards + rotation left
 		'x':(-1,0,0), 	# backward
 		'd':(0,0,-1), 	# turn right on spot
 		'a':(0,0,1), 	# turn left on spot
