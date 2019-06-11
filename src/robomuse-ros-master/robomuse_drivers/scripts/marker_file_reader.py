@@ -6,7 +6,7 @@ roslib.load_manifest('aruco_ros')
 import rospy
 import math
 import tf
-import geometry_msgs.msg
+from geometry_msgs.msg import Pose
 import aruco_msgs.msg
 from pyquaternion import Quaternion as pyqu
 from visualization_msgs.msg import Marker
@@ -23,6 +23,8 @@ class converter():
         self.id_dictionary = np.array([])
         self.id_visible_flags= np.array([])
         self.posearray = []
+        self.goalarray = []
+        self.goalpub = []
         self.flag1 = 0
 
     def repeater(self):
@@ -47,17 +49,12 @@ class converter():
                         avg = [avg[0],avg[1],avg[2],ori[0],ori[1],ori[2],ori[3]]
                         self.br.sendTransform((avg[0],avg[1],avg[2]),(avg[3],avg[4],avg[5],avg[6]),rospy.Time.now(),"markerframe_"+str(j),'map')
                         self.posearray.append([avg[0],avg[1],avg[2],avg[3],avg[4],avg[5],avg[6]])
-                        quat = (avg[3],avg[4],avg[5],avg[6])
-                        euler = tf.transformations.euler_from_quaternion(quat)
-                        roll = euler[0]
-                        pitch = euler[1]
-                        yaw = euler[2]
-                        #print(roll, pitch, yaw)
                         self.id_dictionary = np.append(self.id_dictionary,flag)
                         j += 1
                         f.close()
                 except(IndexError,tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException, IOError):
                     continue
+        ff = 0
         while not rospy.is_shutdown():
             j = 0
             for pose in self.posearray:
@@ -68,10 +65,26 @@ class converter():
                 ori = ori.normalised
                 self.br.sendTransform((trans[0],trans[1],0),(ori[0],ori[1],ori[2],ori[3]),rospy.Time.now(),"markerframeground_"+str(j),'map')
                 self.br.sendTransform( (0,1.5,0),(0,0,-0.707,0.707),rospy.Time.now(),"goal_"+str(j),"markerframeground_"+str(j))
+                if ff == 0:
+                    self.goalpub.append(rospy.Publisher('/robomuse/goal_'+str(j),Pose,queue_size = 10))
+                try:
+                    (posi,orii) = self.listener.lookupTransform('map','goal_'+str(j), rospy.Time(0))
+                    pp = Pose()
+                    pp.position.x = posi[0]
+                    pp.position.y = posi[1]
+                    pp.position.z = posi[2]
+                    pp.orientation.x = orii[0]
+                    pp.orientation.y = orii[1]
+                    pp.orientation.z = orii[2]
+                    pp.orientation.w = orii[3]
+                    self.goalpub[j].publish(pp)
+                except(tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+                    pass
                 n = idarray()
                 n.data = self.id_dictionary
                 self.dict_pub.publish(n)
                 j += 1
+            ff = 1
             rate.sleep()
         return 0
 
