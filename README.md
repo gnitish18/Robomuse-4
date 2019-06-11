@@ -18,7 +18,7 @@ roslaunch aruco_ros marker_publisher.launch
 <code>
 roslaunch robomuse_drivers nav_rtab.launch
 </code>
-and\
+and <br>
 <code>
 roslaunch robomuse_drivers nav_move_base.launch
 </code>
