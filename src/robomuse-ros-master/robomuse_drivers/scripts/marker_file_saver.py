@@ -17,11 +17,12 @@ import numpy as np
 class converter():
     def __init__(self):
         self.listener = tf.TransformListener()
-        os.mkdir('poses')
         self.br = tf.TransformBroadcaster()
         self.arucsubp = rospy.Subscriber('/aruco_marker_publisher/markers_list',idarray,self.markerlistcbk)
         self.id_dictionary = np.array([])
         self.id_visible_flags= np.array([])
+        os.chdir('/home/srike27/')
+        os.mkdir('poses')
         self.posearray = []
         self.flag1 = 0
 
@@ -32,8 +33,11 @@ class converter():
                 try:
                     if flag == 1:
                         (self.pos,self.ori) = self.listener.lookupTransform('map','globalmarker_'+str(j), rospy.Time(0))
-                        self.pos.append(self.ori)
-                        with open('poses/marker'+str(self.id_dictionary[j])+'.csv', 'a') as csvFile:
+                        self.pos.append(self.ori[0])
+                        self.pos.append(self.ori[1])
+                        self.pos.append(self.ori[2])
+                        self.pos.append(self.ori[3])
+                        with open('marker'+str(self.id_dictionary[j])+'.csv', 'a') as csvFile:
 		                    writer = csv.writer(csvFile)
 		                    writer.writerow(self.pos)
                     j = j + 1
