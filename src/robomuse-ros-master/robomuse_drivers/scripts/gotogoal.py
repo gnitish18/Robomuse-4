@@ -10,20 +10,37 @@ import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 import subprocess
 
-goals = [[1.56,-1.54,0,0,0,-0.31,0.95],[2,0.34,0,0,0,0.34,0.97],[0.8,-2.67,0,0,0,-0.34,1],[-0.59,-1,0,0,0,1,1]]
+goals= [Pose(),Pose(),Pose(),Pose(),Pose()]
 i = 0
-def movebase_client(n):
 
+def cbk0(msg):
+    global goals
+    goals[0] = msg 
+def cbk1(msg):
+    global goals
+    goals[1] = msg 
+def cbk2(msg):
+    global goals
+    goals[2] = msg 
+def cbk3(msg):
+    global goals
+    goals[3] = msg 
+def cbk4(msg):
+    global goals
+    goals[4] = msg 
+
+def movebase_client(n):
+    global goals
+    global number
     client = actionlib.SimpleActionClient('move_base',MoveBaseAction)
     client.wait_for_server()
     goal = MoveBaseGoal()
     goal.target_pose.header.frame_id = "map"
     goal.target_pose.header.stamp = rospy.Time.now()
-    goal.target_pose.pose.position.x = goals[n][0]
-    goal.target_pose.pose.position.y = goals[n][1]
-    goal.target_pose.pose.orientation.w = goals[n][5]
-    goal.target_pose.pose.orientation.w = goals[n][6]
-
+    goal.target_pose.pose.position.x = goals[n].position.x
+    goal.target_pose.pose.position.y = goals[n].position.y
+    goal.target_pose.pose.orientation.w = goals[n].orientation.z
+    goal.target_pose.pose.orientation.w = goals[n].orientation.w
     client.send_goal(goal)
     wait = client.wait_for_result()
     if not wait:
@@ -34,10 +51,15 @@ def movebase_client(n):
 
 if __name__ == '__main__':
     i = 0
+    rospy.init_node('movebase_client_py')
+    rospy.Subscriber('/robomuse/goal_0',Pose,cbk0)
+    rospy.Subscriber('/robomuse/goal_1',Pose,cbk1)
+    rospy.Subscriber('/robomuse/goal_2',Pose,cbk2)
+    rospy.Subscriber('/robomuse/goal_3',Pose,cbk3)
+    rospy.Subscriber('/robomuse/goal_4',Pose,cbk4)
     while(1):
         n = input()
         try:
-            rospy.init_node('movebase_client_py')
             result = movebase_client(n)
             if result:
                 rospy.loginfo("Goal execution done!")
