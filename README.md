@@ -17,5 +17,8 @@ roslaunch aruco_ros marker_publisher.launch
 <h4>For navigating on given map </h4>
 <code>
 roslaunch robomuse_drivers nav_rtab.launch
+</code>
+and <br>
+<code>
 roslaunch robomuse_drivers nav_move_base.launch
 </code>

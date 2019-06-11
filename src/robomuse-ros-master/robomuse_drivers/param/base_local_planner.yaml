@@ -1,6 +1,6 @@
 TrajectoryPlannerROS:
-  acc_lim_x: 0.3
-  acc_lim_y: 0.3
+  acc_lim_x: 0.25
+  acc_lim_y: 0.25
   acc_lim_theta: 2
   sim_time: 1.5
   min_in_place_rotational_vel: 0.3
@@ -19,3 +19,10 @@ TrajectoryPlannerROS:
 RotateRecovery:
   sim_granularity: 0.001
   frequency: 10
+ClearCostmapRecovery:
+  reset_distance: 0.0
+conservative_reset:
+  reset_distance: 0.0
+aggressive_reset:
+  reset_distance: 0.0
+
