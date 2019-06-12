@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-
-  <node name="map_server" pkg="map_server" type="map_server" args="/home/srike27/demotest.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/srike27/markermap3.yaml"/>
    <!-- Fire up AMCL -->
   <arg name="camera" default="camera"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
@@ -10,7 +9,6 @@
     <rosparam file="$(find robomuse_drivers)/param/local_costmap.yaml" />
     <rosparam file="$(find robomuse_drivers)/param/global_costmap.yaml" />
     <!--rosparam file="$(find robomuse_drivers)/param/dwaplanner.yaml" /-->
-    <rosparam file="$(find robomuse_drivers)/param/recovery.yaml" />
     <rosparam file="$(find robomuse_drivers)/param/base_local_planner.yaml" />
     <param name="controller_frequency" value="10.0" />
     <rosparam param="recovery_behaviors">
@@ -23,4 +21,5 @@
     <remap from="cmd_vel" to="/robomuse/cmd_vel"/>
     <!--remap from="move_base_simple/goal" to="/rtabmap/goal"/-->
   </node>
+  <node name="subcall" pkg="robomuse_drivers" type="subcall.py"/> 
 </launch>
