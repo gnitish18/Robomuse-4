@@ -155,7 +155,7 @@ void ROSArduinoBase::encodersCallback(const ros_arduino_msgs::Encoders::ConstPtr
 
 
   try{
-    listener.lookupTransform("map", "visualposnorm", ros::Time(0), cor);
+    listener.lookupTransform("map", "corrected_pose_absolute", ros::Time(0), cor);
     if(cor.getOrigin().z()==0 && dx == 0 && dy == 0 && delta_theta == 0){
     x_ = cor.getOrigin().x();
     y_ = cor.getOrigin().y();
