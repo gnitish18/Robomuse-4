@@ -34,7 +34,7 @@ if __name__ == '__main__':
         result = movebase_client()
         if result:
             rospy.loginfo("Goal execution done!")
-            subprocess.call("./sayhello.sh", shell=True)
+            subprocess.call("cd ~/catkin_ws/robomuse-ros-master/robomuse_drivers/scripts && ./sayhello.sh", shell=True)
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
     rospy.sleep(3)
