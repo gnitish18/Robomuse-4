@@ -6,6 +6,7 @@ roslib.load_manifest('aruco_ros')
 import rospy
 import math
 import tf
+import subprocess
 from geometry_msgs.msg import Pose
 import aruco_msgs.msg
 from pyquaternion import Quaternion as pyqu
@@ -22,6 +23,8 @@ class converter():
         self.dict_pub = rospy.Publisher('/robomuse/marker_dictionary_map',idarray,queue_size = 10)
         self.id_dictionary = np.array([])
         self.id_visible_flags= np.array([])
+        subprocess.call("cd ~/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers && ls && echo 'select marker folder'", shell=True)
+        self.nst = '16_06_2019_08_42_56'
         self.posearray = []
         self.goalarray = []
         self.goalpub = []
@@ -32,7 +35,7 @@ class converter():
         for flag in range(1024):
                 try:
                     test = 0            
-                    with open('poses/marker'+str(flag)+'.csv',mode = 'r')as f:
+                    with open('/home/srike27/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers/'+self.nst+'/marker'+str(flag)+'.csv',mode = 'r')as f:
                         data = csv.reader(f)
                         summ = [0,0,0,0,0,0,0]
                         k = 0
