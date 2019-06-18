@@ -48,19 +48,6 @@ class generator():
                 except(IndexError,tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                     j = j + 1
                     continue
-            summ = [0,0,0,0,0,0,0]
-            j = 0
-            for pose in poses:
-                summ = [summ[0]+pose[0],summ[1]+pose[1],summ[2]+pose[2],summ[3]+pose[3],summ[4]+pose[4],summ[5]+pose[5],summ[6]+pose[6]]
-                j += 1
-            if not j == 0:
-                avg = [summ[0]/j,summ[1]/j,summ[2]/j,summ[3]/j,summ[4]/j,summ[5]/j,summ[6]/j]
-                if self.id_visible_flags.sum() > 0:
-                    pf = [avg[0],avg[1],avg[2],pose[3],pose[4],pose[5],pose[6]]
-                else:
-                    pf = [avg[0],avg[1],50,pose[3],pose[4],pose[5],pose[6]]
-                nor = math.sqrt(pf[5]**2 + pf[6]**2)
-                self.br.sendTransform((pf[0],pf[1],0),(0,0,pf[5]/nor,pf[6]/nor),rospy.Time.now(),"corrected_pose_absolute","map")
             rate.sleep()
         return 0
 

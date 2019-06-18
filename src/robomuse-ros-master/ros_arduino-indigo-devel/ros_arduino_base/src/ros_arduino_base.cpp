@@ -30,6 +30,7 @@ POSSIBILITY OF SUCH DAMAGE.
 */
 #include <math.h>
 #include "ros_arduino_base/ros_arduino_base.h"
+int ffflag = 0;
 
 ROSArduinoBase::ROSArduinoBase(ros::NodeHandle nh):
   nh_(nh),
@@ -152,11 +153,9 @@ void ROSArduinoBase::encodersCallback(const ros_arduino_msgs::Encoders::ConstPtr
   
   ros_arduino_msgs::CmdDiffVel diff_vel_msg;
   geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(theta_);
-
-
   try{
     listener.lookupTransform("map", "corrected_pose_absolute", ros::Time(0), cor);
-    if(cor.getOrigin().z()==0 && dx == 0 && dy == 0 && delta_theta == 0){
+    if(cor.getOrigin().z()==0 && dx == 0 && dy == 0 && delta_theta ==0 && ffflag == 0){
     x_ = cor.getOrigin().x();
     y_ = cor.getOrigin().y();
     odom_quat.x = cor.getRotation().x();
@@ -168,14 +167,16 @@ void ROSArduinoBase::encodersCallback(const ros_arduino_msgs::Encoders::ConstPtr
     double roll,pitch,yaw;
     m.getRPY(roll,pitch,yaw);
     theta_ = yaw;
+    }
+    if(dx>0 || dx <0 || dy>0 || dy < 0 || delta_theta > 0 || delta_theta < 0){
+      ffflag = 1;
+    }
     //counter++;
     //if (counter == 5){
      /// counter =0;
     //}
   }
-  }
   catch (tf::TransformException &ex){
-    
   }
   
 

@@ -23,14 +23,16 @@ class converter():
         self.dict_pub = rospy.Publisher('/robomuse/marker_dictionary_map',idarray,queue_size = 10)
         self.id_dictionary = np.array([])
         self.id_visible_flags= np.array([])
-        subprocess.call("cd ~/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers && ls && echo 'select marker folder'", shell=True)
-        self.nst = '16_06_2019_08_42_56'
+        param_name = rospy.search_param('folder_name')
+        v = rospy.get_param(param_name)
+        self.nst = v
         self.posearray = []
         self.goalarray = []
         self.goalpub = []
         self.flag1 = 0
 
     def repeater(self):
+        subprocess.call("cd ~/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers && ls && echo 'select marker folder'", shell=True)
         j = 0
         for flag in range(1024):
                 try:

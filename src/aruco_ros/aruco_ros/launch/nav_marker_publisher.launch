@@ -13,7 +13,9 @@
         <param name="reference_frame"    value="$(arg ref_frame)"/>   <!-- frame in which the marker pose will be refered -->
         <param name="camera_frame"       value="camera_rgb_optical_frame"/>
     </node>
-    <node pkg="robomuse_drivers" type="marker_file_reader.py" name="marker_file_reader"/>
+    <node pkg="robomuse_drivers" type="marker_file_reader.py" name="marker_file_reader">
+        <param name="folder_name" value ="18_06_2019_13_00_02"/>
+    </node>
     <node pkg="robomuse_drivers" type="marker_relative_frame_gen.py" name="marker_relative_frame_gen"/>
     <node pkg="robomuse_drivers" type="generate_corrected_pose_nofilter.py" name="generate_corrected_pose_nofilter"/>
 </launch>
