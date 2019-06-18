@@ -18,5 +18,6 @@
     </node>
     <node pkg="robomuse_drivers" type="marker_relative_frame_gen.py" name="marker_relative_frame_gen"/>
     <node pkg="robomuse_drivers" type="generate_corrected_pose_nofilter.py" name="generate_corrected_pose_nofilter"/>
+    <node pkg="robomuse_drivers" type="choose_corrected_pose_nofilter.py" name="choose_corrected_pose_nofilter"/>
 </launch>
 
