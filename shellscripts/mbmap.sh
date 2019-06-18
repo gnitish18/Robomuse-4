@@ -1,0 +1,2 @@
+sleep 7
+roslaunch robomuse_drivers map_move_base.launch
