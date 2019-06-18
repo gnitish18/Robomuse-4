@@ -1,1 +1,0 @@
-espeak 'Reached Goal'
