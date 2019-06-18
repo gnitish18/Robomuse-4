@@ -1,24 +1,17 @@
 # Robomuse-4
 <h3> Autonomous Robot Platform of IIT Delhi </h3>
-<h3> Running the robot</h3>
-<h4> To start the robot this command has to be run in a terminal</h4>
+<h3> Setting up robot in your laptop</h3>
+<h4> clone the repository and copy paste all the files inside src into src inside your catkin workspace</h4>
+<h4> copy paste the folder shellscripts in your home directory</h4>
+<h4> copy paste the two shell scripts nav.sh and map.sh into your home directory</h4>
+<h3> Running Robot </h3>
+<h4> Plug in the usb cables and turn on the switch</h4>
+<h4> open terminal </h4>
+<h4> If mapping run </h4>
 <code>
-roslaunch robomuse_drivers robomuse_depth_reg.launch
+./map.sh
 </code>
-<h4>For creating a new map</h4>
+<h4>For navigating in created map set required map and markers in launch file and run</h4>
 <code>
-roslaunch robomuse_drivers map_rtab.launch
-</code>
-<h4>For mapping along with markers run this with above</h4>
-<code>
-roslaunch aruco_ros marker_publisher.launch
-</code>
-
-<h4>For navigating on given map </h4>
-<code>
-roslaunch robomuse_drivers nav_rtab.launch
-</code>
-and <br>
-<code>
-roslaunch robomuse_drivers nav_move_base.launch
+./nav.sh
 </code>

@@ -35,10 +35,12 @@ class converter():
                         self.br.sendTransform((p.position.x,p.position.y,p.position.z),(p.orientation.x,p.orientation.y,p.orientation.z,p.orientation.w),rospy.Time.now(),"relmarker_"+str(j),'camera_rgb_optical_frame')
                         data1 = idarray()
                         data1.data = self.id_visible_flags
-                        self.vis_pub.publish(data1)
+                    else:
+                        data1.data = self.id_visible_flags
                     j = j + 1
+                    self.vis_pub.publish(data1)
                 except(IndexError):
-                    continue
+                    continue           
             rate.sleep()
         return 0
 
@@ -49,25 +51,28 @@ class converter():
     def markerarraycbk(self,msg):
         pos = geometry_msgs.msg.Pose()
         pos.orientation.w = 1
-        no = len(self.posearray)
-        if no==0:
-            for i in self.id_dictionary:
+        try:
+            no = len(self.posearray)
+            if no==0:
+                for i in self.id_dictionary:
+                    self.posearray.append(pos)
+            no = len(self.posearray)
+            while len(self.id_dictionary) > no:
                 self.posearray.append(pos)
-        no = len(self.posearray)
-        while len(self.id_dictionary) > no:
-            self.posearray.append(pos)
-            no = no + 1
-        for i in range(len(msg.markers)):
-            try:
-                index = np.where(self.id_dictionary == msg.markers[i].id)
-                if index[0].size is not 0:
-                    #print index[0][0]
-                    self.posearray[index[0][0]] = msg.markers[i].pose.pose
-                else:
-                    self.posearray.append(msg.markers[i].pose.pose)
-                #print self.posearray[i],msg.markers[i].id
-            except(IndexError):
-                continue
+                no = no + 1
+            for i in range(len(msg.markers)):
+                try:
+                    index = np.where(self.id_dictionary == msg.markers[i].id)
+                    if index[0].size is not 0:
+                        #print index[0][0]
+                        self.posearray[index[0][0]] = msg.markers[i].pose.pose
+                    else:
+                        self.posearray.append(msg.markers[i].pose.pose)
+                    #print self.posearray[i],msg.markers[i].id
+                except(IndexError):
+                    continue
+        except:
+            pass
         return 0
 
     def markerlistcbk(self,msg):
