@@ -61,7 +61,12 @@ class converter():
                 index = np.where(self.id_dictionary == msg.markers[i].id)
                 if index[0].size is not 0:
                     #print index[0][0]
-                    self.posearray[index[0][0]] = msg.markers[i].pose.pose
+                    xo = msg.markers[i].pose.pose.orientation.x*self.posearray[index[0][0]].orientation.x  #ensure same sign of quaternion in marker
+                    yo = msg.markers[i].pose.pose.orientation.y*self.posearray[index[0][0]].orientation.y  #ensure same sign of quaternion in marker
+                    zo = msg.markers[i].pose.pose.orientation.z*self.posearray[index[0][0]].orientation.z  #ensure same sign of quaternion in marker
+                    wo = msg.markers[i].pose.pose.orientation.w*self.posearray[index[0][0]].orientation.w  #ensure same sign of quaternion in marker
+                    if True:
+                        self.posearray[index[0][0]] = msg.markers[i].pose.pose
                 else:
                     self.posearray.append(msg.markers[i].pose.pose)
                 #print self.posearray[i],msg.markers[i].id

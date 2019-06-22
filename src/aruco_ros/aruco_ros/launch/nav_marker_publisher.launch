@@ -14,10 +14,10 @@
         <param name="camera_frame"       value="camera_rgb_optical_frame"/>
     </node>
     <node pkg="robomuse_drivers" type="marker_file_reader.py" name="marker_file_reader">
-        <param name="folder_name" value ="18_06_2019_13_00_02"/>
+        <param name="folder_name" value ="20_06_2019_14_06_08"/>
     </node>
-    <node pkg="robomuse_drivers" type="marker_relative_frame_gen.py" name="marker_relative_frame_gen"/>
+    <node pkg="robomuse_drivers" type="marker_relative_frame_gen_kf.py" name="marker_relative_frame_gen"/>
     <node pkg="robomuse_drivers" type="generate_corrected_pose_nofilter.py" name="generate_corrected_pose_nofilter"/>
-    <node pkg="robomuse_drivers" type="choose_corrected_pose_nofilter.py" name="choose_corrected_pose_nofilter"/>
+    <node pkg="robomuse_drivers" type="choose_corrected_pose.py" name="choose_corrected_pose_nofilter"/>
 </launch>
 

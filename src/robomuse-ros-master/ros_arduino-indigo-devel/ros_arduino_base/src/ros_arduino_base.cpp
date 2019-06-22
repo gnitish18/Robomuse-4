@@ -154,8 +154,8 @@ void ROSArduinoBase::encodersCallback(const ros_arduino_msgs::Encoders::ConstPtr
   ros_arduino_msgs::CmdDiffVel diff_vel_msg;
   geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(theta_);
   try{
-    listener.lookupTransform("map", "corrected_pose_absolute", ros::Time(0), cor);
-    if(cor.getOrigin().z()==0 && dx == 0 && dy == 0 && delta_theta ==0 && ffflag == 0){
+    listener.lookupTransform("map", "corrected_pose_absolute", ros::Time(0),cor);
+    if(cor.getOrigin().z()==0 && dx_ ==0 && dy_==0 && delta_theta == 0){
     x_ = cor.getOrigin().x();
     y_ = cor.getOrigin().y();
     odom_quat.x = cor.getRotation().x();
@@ -167,9 +167,6 @@ void ROSArduinoBase::encodersCallback(const ros_arduino_msgs::Encoders::ConstPtr
     double roll,pitch,yaw;
     m.getRPY(roll,pitch,yaw);
     theta_ = yaw;
-    }
-    if(dx>0 || dx <0 || dy>0 || dy < 0 || delta_theta > 0 || delta_theta < 0){
-      ffflag = 1;
     }
     //counter++;
     //if (counter == 5){
