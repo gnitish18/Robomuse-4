@@ -30,10 +30,10 @@ class converter():
             j = 0
             for flag in self.id_visible_flags:
                 try:
+                    data1 = idarray()
                     if flag == 1:
                         p = self.posearray[j]
                         self.br.sendTransform((p.position.x,p.position.y,p.position.z),(p.orientation.x,p.orientation.y,p.orientation.z,p.orientation.w),rospy.Time.now(),"relmarker_"+str(j),'camera_rgb_optical_frame')
-                        data1 = idarray()
                         data1.data = self.id_visible_flags
                     else:
                         data1.data = self.id_visible_flags
@@ -65,7 +65,12 @@ class converter():
                     index = np.where(self.id_dictionary == msg.markers[i].id)
                     if index[0].size is not 0:
                         #print index[0][0]
-                        self.posearray[index[0][0]] = msg.markers[i].pose.pose
+                        """xo = msg.markers[i].pose.pose.orientation.x*self.posearray[index[0][0]].orientation.x  #ensure same sign of quaternion in marker
+                        yo = msg.markers[i].pose.pose.orientation.y*self.posearray[index[0][0]].orientation.y  #ensure same sign of quaternion in marker
+                        zo = msg.markers[i].pose.pose.orientation.z*self.posearray[index[0][0]].orientation.z  #ensure same sign of quaternion in marker
+                        wo = msg.markers[i].pose.pose.orientation.w*self.posearray[index[0][0]].orientation.w  #ensure same sign of quaternion in marker
+                        if xo > 0 and yo>0 and zo>0 and wo>0:"""
+                    	self.posearray[index[0][0]] = msg.markers[i].pose.pose
                     else:
                         self.posearray.append(msg.markers[i].pose.pose)
                     #print self.posearray[i],msg.markers[i].id

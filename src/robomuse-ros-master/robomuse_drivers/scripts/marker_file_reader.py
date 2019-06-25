@@ -21,6 +21,7 @@ class converter():
         self.listener = tf.TransformListener()
         self.br = tf.TransformBroadcaster()
         self.dict_pub = rospy.Publisher('/robomuse/marker_dictionary_map',idarray,queue_size = 10)
+
         self.id_dictionary = np.array([])
         self.id_visible_flags= np.array([])
         param_name = rospy.search_param('folder_name')
@@ -39,21 +40,35 @@ class converter():
                     test = 0            
                     with open('/home/srike27/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers/'+self.nst+'/marker'+str(flag)+'.csv',mode = 'r')as f:
                         data = csv.reader(f)
-                        summ = [0,0,0,0,0,0,0]
+                        values = []
                         k = 0
                         for row in data:
-                            test = 1
+                            val = np.array([0.0,0.0,0.0,0.0,0.0,0.0,0.0])
                             for l in range(len(row)):
-                                summ[l] = float(row[l]) + summ[l]
+                                val[l] = float(row[l])
+                            val = np.array(val)
+                            values.append(val)
                             k = k + 1
-                    if test == 1:
-                        avg = [summ[0]/k,summ[1]/k,summ[2]/k,summ[3]/k,summ[4]/k,summ[5]/k,summ[6]/k]
-                        ori = pyqu(avg[3],avg[4],avg[5],avg[6])
+                        f.close()
+                        valueso = np.array(values)
+                        P = np.cov(valueso.T)
+                        m = np.mean(valueso,axis=0)
+                        Kg = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+                        Pk = np.zeros((7,7))
+                        V = np.zeros((7,7))
+                        poseo = m
+                        for pose in values:
+                            V = np.linalg.inv(P+Pk)
+                            Kg = np.matmul(Pk,V) 
+                            diff = (pose - poseo)
+                            posen = poseo + np.matmul(Kg,diff)
+                            Pk = np.matmul(np.identity(pose.size)-np.matmul(Kg,(np.identity(pose.size))),Pk)
+                            poseo = posen
+                        ori = pyqu(poseo[3],poseo[4],poseo[5],poseo[6])
                         ori = ori.normalised
-                        #print ori
-                        avg = [avg[0],avg[1],avg[2],ori[0],ori[1],ori[2],ori[3]]
-                        self.br.sendTransform((avg[0],avg[1],avg[2]),(avg[3],avg[4],avg[5],avg[6]),rospy.Time.now(),"markerframe_"+str(j),'map')
-                        self.posearray.append([avg[0],avg[1],avg[2],avg[3],avg[4],avg[5],avg[6]])
+                        poseo = [poseo[0],poseo[1],poseo[2],ori[0],ori[1],ori[2],ori[3]]
+                        self.br.sendTransform((poseo[0],poseo[1],poseo[2]),(poseo[3],poseo[4],poseo[5],poseo[6]),rospy.Time.now(),"markerframe_"+str(j),'map')
+                        self.posearray.append(poseo)
                         self.id_dictionary = np.append(self.id_dictionary,flag)
                         j += 1
                         f.close()

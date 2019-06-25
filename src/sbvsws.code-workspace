@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "sbint"
+		},
+		{
+			"path": "sbhw"
+		},
+		{
+			"path": "sbip"
+		},
+		{
+			"path": "sbsim"
+		}
+	],
+	"settings": {}
+}

@@ -43,7 +43,8 @@ class generator():
                     if flag == 1:
                         (trans,rot) = self.listener.lookupTransform('map',"corrected_pose"+str(j), rospy.Time(0))
                         dist.append(math.sqrt(trans[0]**2 + trans[1]**2 + trans[2]**2))
-                        poses.append([trans[0],trans[1],0,rot[0],rot[1],rot[2],rot[3]])
+                        s = math.sqrt(rot[2]**2 + rot[3]**2)
+                        poses.append([trans[0],trans[1],0,0,0,rot[2]/s,rot[3]/s])
                     else:
                         dist.append(100000.0)
                         poses.append([50,50,50,0,0,0,1])
