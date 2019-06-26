@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find robomuse_drivers)/maps/samesign.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find robomuse_drivers)/maps/LHC_Circle.yaml"/>
    <!-- Fire up AMCL -->
   <arg name="camera" default="camera"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">

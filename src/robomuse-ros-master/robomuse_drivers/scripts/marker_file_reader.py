@@ -84,7 +84,7 @@ class converter():
                 ori = pyqu(0,0,rot[2],rot[3])
                 ori = ori.normalised
                 self.br.sendTransform((trans[0],trans[1],0),(ori[0],ori[1],ori[2],ori[3]),rospy.Time.now(),"markerframeground_"+str(j),'map')
-                self.br.sendTransform( (0,1.5,0),(0,0,-0.707,0.707),rospy.Time.now(),"goal_"+str(j),"markerframeground_"+str(j))
+                self.br.sendTransform( (0,1.8,0),(0,0,-0.707,0.707),rospy.Time.now(),"goal_"+str(j),"markerframeground_"+str(j))
                 if ff == 0:
                     self.goalpub.append(rospy.Publisher('/robomuse/goal_'+str(j),Pose,queue_size = 10))
                 try:
