@@ -1,16 +1,16 @@
 TrajectoryPlannerROS:
   acc_lim_x: 0.25
   acc_lim_y: 0.25
-  acc_lim_theta: 1
-  max_vel_x: 0.35
-  min_vel_x: -0.2
+  acc_lim_theta: 2
+  #max_vel_x: 0.35
+  #min_vel_x: -0.2
   sim_time: 1.5
   min_in_place_rotational_vel: 0.3
   meter_scoring: true
   vx_samples: 3
   vtheta_samples: 20
-  xy_goal_tolerance: 0.1
-  yaw_goal_tolerance: 0.1
+  xy_goal_tolerance: 2.0
+  yaw_goal_tolerance: 1.0
   latch_xy_goal_tolerance: true
   pdist_scale: 0.4 # The higher will follow more the global path.
   gdist_scale: 0.8

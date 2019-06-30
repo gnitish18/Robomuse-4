@@ -14,7 +14,7 @@
         <param name="camera_frame"       value="camera_rgb_optical_frame"/>
     </node>
     <node pkg="robomuse_drivers" type="marker_file_reader.py" name="marker_file_reader">
-        <param name="folder_name" value ="20_06_2019_14_06_08"/>
+        <param name="folder_name" value ="25_06_2019_15_44_14"/>
     </node>
     <node pkg="robomuse_drivers" type="marker_relative_frame_gen_kf.py" name="marker_relative_frame_gen"/>
     <node pkg="robomuse_drivers" type="generate_corrected_pose_nofilter.py" name="generate_corrected_pose_nofilter"/>

@@ -3,7 +3,7 @@ DWAPlannerROS:
     acc_lim_x: 0.1
     acc_lim_y: 0.2
     acc_lim_th: 0.2
-    max_vel_x: 0.15
+    #max_vel_x: 0.15
     min_vel_x: -0.2
     max_rotational_vel: 0.2
     min_in_place_rotational_vel: 0.1
