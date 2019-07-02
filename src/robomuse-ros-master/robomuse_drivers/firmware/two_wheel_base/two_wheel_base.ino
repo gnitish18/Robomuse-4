@@ -1,3 +1,4 @@
+
 /*
 
  Copyright (c) 2013-2015, Tony Baltovski 
@@ -34,7 +35,6 @@
 #include <ros_arduino_base/UpdateGains.h>
 #include <ros_arduino_msgs/Encoders.h>
 #include <ros_arduino_msgs/CmdDiffVel.h>
-
 /********************************************************************************************
 /                                                     USER CONFIG                           *
 /********************************************************************************************/

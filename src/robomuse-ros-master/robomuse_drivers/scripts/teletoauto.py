@@ -5,8 +5,10 @@
 #import youbot_driver_ros_interface
 #import roslib; roslib.load_manifest('youbot_oodl')
 import rospy
-
+import subprocess
+from actionlib_msgs.msg import GoalID
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Int32
 
 import sys, select, termios, tty, signal
 
@@ -36,7 +38,7 @@ moveBindings = {
 		'x':(-1,0,0), 	# backward
 		'd':(0,0,-1), 	# turn right on spot
 		'a':(0,0,1), 	# turn left on spot
-	       }
+	       } 
 
 speedBindings={
 		'y':(1.2,1.2),
@@ -47,10 +49,13 @@ speedBindings={
 		'v':(1,.8),
 	      }
 
+controlBindings={
+        '.':(1)
+}
 
 
 class TimeoutException(Exception): 
-    pass 
+    pass
 
 def getKey():
     def timeout_handler(signum, frame):
@@ -81,15 +86,17 @@ def vels(speed,turn):
 
 if __name__=="__main__":
     	settings = termios.tcgetattr(sys.stdin)
-	
+	pub3 = rospy.Publisher('movebase/cancel', GoalID)
 	pub = rospy.Publisher('robomuse/cmd_vel', Twist)
+	pub2 = rospy.Publisher('robomuse/stopper', Int32)
 	rospy.init_node('teleop_twist_keyboard')
 
 	x = 0
 	y = 0
 	th = 0
 	status = 0
-
+	a = Int32()
+	a.data = 0
 	try:
 		print msg
 		print vels(speed,turn)
@@ -99,30 +106,58 @@ if __name__=="__main__":
 				x = moveBindings[key][0]
 				y = moveBindings[key][1]
 				th = moveBindings[key][2]
+				twist = Twist()
+				twist.linear.x = x*speed 
+				twist.linear.y = y*speed 
+				twist.linear.z = 0
+
+				twist.angular.x = 0 
+				twist.angular.y = 0
+				twist.angular.z = th*turn
+				pub.publish(twist)
 			elif key in speedBindings.keys():
 				speed = speed * speedBindings[key][0]
 				turn = turn * speedBindings[key][1]
-
 				print vels(speed,turn)
 				if (status == 14):
 					print msg
 				status = (status + 1) % 15
+				a.data = 0
+				twist = Twist()
+				twist.linear.x = x*speed 
+				twist.linear.y = y*speed 
+				twist.linear.z = 0
+
+				twist.angular.x = 0 
+				twist.angular.y = 0
+				twist.angular.z = th*turn
+				pub.publish(twist)
+				pub2.publish(a)
+			elif key in controlBindings.keys():
+				a.data = 1
+				pub2.publish(a)
+				b = GoalID()
+				pub3.publish(b)
+				#subprocess.call("cd ~/catkin_ws/src/robomuse-ros-master/robomuse_drivers/scripts && ./stopgoal.sh", shell=True)
 			else:
+				a.data = 0
+				pub2.publish(a)
+				twist = Twist()
+				twist.linear.x = x*speed 
+				twist.linear.y = y*speed 
+				twist.linear.z = 0
+
+				twist.angular.x = 0 
+				twist.angular.y = 0
+				twist.angular.z = th*turn
+				pub.publish(twist)
 				x = 0
 				y = 0
 				th = 0
 				if (key == '\x03'):
 					break
 
-			twist = Twist()
-			twist.linear.x = x*speed 
-			twist.linear.y = y*speed 
-			twist.linear.z = 0
-
-			twist.angular.x = 0 
-			twist.angular.y = 0
-			twist.angular.z = th*turn
-			pub.publish(twist)
+			
 
 	except:
 		print e

@@ -12,6 +12,7 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 import subprocess
 
 goals= [Pose(),Pose(),Pose(),Pose(),Pose(),Pose()]
+flag = 0
 i = 0
 n = -1
 
@@ -59,11 +60,17 @@ def movebase_client(n):
         else:
             return client.get_result()
 
+def cccbk(msg):
+    global flag
+    if msg.data == 1:
+        rospy.signal_shutdown('shut down')
+        flag = 1
 
 if __name__ == '__main__':
     i = 0
     rospy.init_node('movebase_client_py')
     rospy.Subscriber('/robomuse/goal_0',Pose,cbk0)
+    rospy.Subscriber('/robomuse/stopper',std_msgs.msg.Int32,cccbk)
     rospy.Subscriber('/robomuse/goal_1',Pose,cbk1)
     rospy.Subscriber('/robomuse/goal_2',Pose,cbk2)
     rospy.Subscriber('/robomuse/goal_3',Pose,cbk3)
@@ -72,6 +79,8 @@ if __name__ == '__main__':
     for n in range(16):
         try:
             result = movebase_client(n)
+            if flag == 1:
+                break
             if result:
                 rospy.loginfo("Goal execution done!")
                 subprocess.call("./sayhello.sh", shell=True)
