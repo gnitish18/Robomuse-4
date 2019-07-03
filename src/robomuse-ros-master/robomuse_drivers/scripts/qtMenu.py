@@ -19,6 +19,7 @@ from PyQt4 import QtCore, QtGui, uic
 
 #importing ros requirements
 import rospy
+import subprocess
 from geometry_msgs.msg import PoseStamped
 
 
@@ -32,7 +33,7 @@ rospy.init_node('menu', anonymous=True)
 
 #End of Speech reCog parameters
 
-qtCreatorFile = "/home/nitish/catkin_ws/src/robomuse-ros-master/robomuse_drivers/scripts/robomuse.ui" # Enter file here.
+qtCreatorFile = "/home/robomuse/catkin_ws/src/robomuse-ros-master/robomuse_drivers/scripts/robomuse.ui" # Enter file here.
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 

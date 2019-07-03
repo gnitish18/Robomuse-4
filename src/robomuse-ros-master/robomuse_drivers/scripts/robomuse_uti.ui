@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>621</width>
-    <height>437</height>
+    <width>697</width>
+    <height>499</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -437,18 +437,31 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="intro">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:600;&quot;&gt;Robomuse 4.0&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Use the &lt;span style=&quot; font-weight:600;&quot;&gt;TELE-OPERATION&lt;/span&gt; button to control the robot manually&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Press &lt;span style=&quot; font-weight:600;&quot;&gt;TURN OFF&lt;/span&gt; button to shut the robot down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;Robomuse 4.0&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Press &lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;AUTONOMOUS&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt; to move the robot around LHC&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Use the &lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;TELE-OPERATION&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt; button to control the robot manually&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Press &lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;TURN OFF&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt; button to shut the robot down&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="aut">
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>100</height>
+        <height>75</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>AUTONOMOUS</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="tel">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>75</height>
        </size>
       </property>
       <property name="text">
@@ -457,11 +470,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="off">
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>100</height>
+        <height>75</height>
        </size>
       </property>
       <property name="text">

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>621</width>
-    <height>372</height>
+    <width>751</width>
+    <height>417</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -437,18 +437,18 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="intro">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:600;&quot;&gt;Robomuse 4.0&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Turn on the Robot and connect the USBs&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Start autonomous surveillance by pressing the &lt;span style=&quot; font-weight:600;&quot;&gt;START&lt;/span&gt; button&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;Robomuse 4.0&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Turn on the robot and connect the USBs&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Start the robot by pressing the &lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;START&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt; button&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="uno">
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>100</height>
+        <height>150</height>
        </size>
       </property>
       <property name="text">
@@ -458,18 +458,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
