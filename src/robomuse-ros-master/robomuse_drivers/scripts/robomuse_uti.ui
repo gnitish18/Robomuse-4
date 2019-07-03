@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>621</width>
-    <height>372</height>
+    <height>437</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -439,7 +439,7 @@
     <item>
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:600;&quot;&gt;Robomuse 4.0&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Turn on the Robot and connect the USBs&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Start autonomous surveillance by pressing the &lt;span style=&quot; font-weight:600;&quot;&gt;START&lt;/span&gt; button&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:600;&quot;&gt;Robomuse 4.0&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Use the &lt;span style=&quot; font-weight:600;&quot;&gt;TELE-OPERATION&lt;/span&gt; button to control the robot manually&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Press &lt;span style=&quot; font-weight:600;&quot;&gt;TURN OFF&lt;/span&gt; button to shut the robot down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
@@ -452,7 +452,20 @@
        </size>
       </property>
       <property name="text">
-       <string>START</string>
+       <string>TELE-OPERATION</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>TURN OFF</string>
       </property>
      </widget>
     </item>

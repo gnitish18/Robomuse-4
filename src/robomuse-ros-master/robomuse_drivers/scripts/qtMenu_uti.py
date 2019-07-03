@@ -32,20 +32,15 @@ rospy.init_node('menu', anonymous=True)
 
 #End of Speech reCog parameters
 
-qtCreatorFile = "/home/nitish/catkin_ws/src/robomuse-ros-master/robomuse_drivers/scripts/robomuse.ui" # Enter file here.
+qtCreatorFile = "/home/nitish/catkin_ws/src/robomuse-ros-master/robomuse_drivers/scripts/robomuse_uti.ui" # Enter file here.
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class MyApp(QtGui.QMainWindow, Ui_MainWindow):
-
-    def func1(self):
-        subprocess.call("./nav.sh", shell=True)
-
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.uno.clicked.connect(self.func1)
 
    
 
