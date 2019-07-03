@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>576</width>
+    <width>751</width>
     <height>502</height>
    </rect>
   </property>
@@ -439,7 +439,7 @@
     <item>
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:48pt; font-weight:600; color:#f57900;&quot;&gt;ROBOMUSE 4.0&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to Advances in Robotics.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600; font-style:italic;&quot;&gt;I am Robomuse 4.0, here at your service.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600; font-style:italic;&quot;&gt;Please select a Destination&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Robomuse 4.0&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Start the robot with this button after plugging in the USBs and turning on switch&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
@@ -454,49 +454,10 @@
          </size>
         </property>
         <property name="text">
-         <string>LOCATION 1</string>
+         <string>Start Robot</string>
         </property>
         <property name="flat">
          <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="dos">
-        <property name="maximumSize">
-         <size>
-          <width>2000</width>
-          <height>2000</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>LOCATION 2</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="tres">
-        <property name="maximumSize">
-         <size>
-          <width>2000</width>
-          <height>2000</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>LOCATION 3</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="quat">
-        <property name="maximumSize">
-         <size>
-          <width>2000</width>
-          <height>2000</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Voice Commands</string>
         </property>
        </widget>
       </item>
@@ -509,8 +470,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>576</width>
-     <height>22</height>
+     <width>751</width>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuRobomuse_4_0_AIR">

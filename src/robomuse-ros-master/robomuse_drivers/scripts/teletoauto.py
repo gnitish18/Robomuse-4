@@ -137,20 +137,12 @@ if __name__=="__main__":
 				a.data = 1
 				pub2.publish(a)
 				b = GoalID()
+				print b.id
 				pub3.publish(b)
 				#subprocess.call("cd ~/catkin_ws/src/robomuse-ros-master/robomuse_drivers/scripts && ./stopgoal.sh", shell=True)
 			else:
 				a.data = 0
 				pub2.publish(a)
-				twist = Twist()
-				twist.linear.x = x*speed 
-				twist.linear.y = y*speed 
-				twist.linear.z = 0
-
-				twist.angular.x = 0 
-				twist.angular.y = 0
-				twist.angular.z = th*turn
-				pub.publish(twist)
 				x = 0
 				y = 0
 				th = 0
