@@ -1,0 +1,17 @@
+killall rosout
+killall rosmaster
+killall roscore
+killall roslaunch
+killall image_view
+killall gnome-terminal-
+killall python
+killall bash
+killall nodelet
+sleep 1
+killall python
+killall gnome-terminal-
+killall bash
+killall python
+sleep 1
+killall gnome-terminal-
+killall bash

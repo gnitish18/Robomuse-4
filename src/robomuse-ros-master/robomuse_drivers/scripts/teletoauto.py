@@ -97,6 +97,11 @@ if __name__=="__main__":
 	status = 0
 	a = Int32()
 	a.data = 0
+	a.data = 1
+	pub2.publish(a)
+	b = GoalID()
+	print b.id
+	pub3.publish(b)
 	try:
 		print msg
 		print vels(speed,turn)

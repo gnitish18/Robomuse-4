@@ -6,15 +6,18 @@ from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
 import rospy
 import std_msgs.msg
+import math
 from geometry_msgs.msg import Pose
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from nav_msgs.msg import Odometry
 import subprocess
 
 goals= [Pose(),Pose(),Pose(),Pose(),Pose(),Pose()]
 flag = 0
 i = 0
 n = -1
+od = [0,0,0]
 
 def cbk0(msg):
     global goals
@@ -59,12 +62,17 @@ def movebase_client(n):
             rospy.signal_shutdown("Action server not available!")
         else:
             return client.get_result()
-
+ 
 def cccbk(msg):
     global flag
     if msg.data == 1:
         rospy.signal_shutdown('shut down')
         flag = 1
+
+def ocbk(msg):
+    global od
+    od[0] = msg.pose.pose.position.x
+    od[1] = msg.pose.pose.position.y
 
 if __name__ == '__main__':
     i = 0
@@ -76,7 +84,16 @@ if __name__ == '__main__':
     rospy.Subscriber('/robomuse/goal_3',Pose,cbk3)
     rospy.Subscriber('/robomuse/goal_4',Pose,cbk4)
     rospy.Subscriber('/robomuse/goal_5',Pose,cbk5)
-    for n in range(16):
+    rospy.Subscriber('/robomuse/odom',Odometry,ocbk)
+    dist = 1000
+    for i in range(100000):
+        print ''
+    for j in range(16):
+        d = math.sqrt((xpos[j] - od[0])**2 + (ypos[j] - od[0])**2) 
+        if d<dist:
+            dist = d
+            n = j
+    while(n<16):
         try:
             result = movebase_client(n)
             if flag == 1:
@@ -86,10 +103,7 @@ if __name__ == '__main__':
                 subprocess.call("./sayhello.sh", shell=True)
         except rospy.ROSInterruptException:
             rospy.loginfo("Navigation test finished.")
-        if n == 0:
-            n = 5
-        else:
-            n = 0
+            n += 1
         rospy.sleep(3)
 
 
