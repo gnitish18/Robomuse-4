@@ -1,2 +1,2 @@
-sleep 7
+sleep 10
 roslaunch aruco_ros map_marker_publisher.launch

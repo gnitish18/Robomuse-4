@@ -61,12 +61,11 @@ pose3.pose.orientation.y = 0.0
 pose3.pose.orientation.z = 0.0
 pose3.pose.orientation.w = 1.0
 
-
 """ Definition for Speech Recognition Parameters"""
 
 MODELDIR = "/usr/local/share/pocketsphinx/model"
 DATADIR = "/usr/local/share/pocketsphinx"
-MYDIR = "/home/subbu/Documents/TAR0717"
+MYDIR = "/home/nitish/Documents/TAR0717"
 
 config = Decoder.default_config()
 config.set_string('-hmm', path.join(MODELDIR, 'en-us/en-us'))

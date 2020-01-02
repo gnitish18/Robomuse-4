@@ -28,13 +28,8 @@ class image_converter:
     except CvBridgeError as e:
       print(e)
 
-
-
     cv2.imshow("Image window", self.cv_image)
     cv2.waitKey(3)
-
-
-
 
 def main(args):
   global i

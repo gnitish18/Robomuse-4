@@ -1,4 +1,4 @@
-#!/usr/bin/env python  
+#!/usr/bin/env python
 import roslib
 roslib.load_manifest('aruco_ros')
 import rospy
@@ -26,12 +26,11 @@ class generator():
         self.id_dictionary = msg.data
         self.id_dictionary = np.array(self.id_dictionary)
         return 0
-    
+
     def flagcbk(self,msg):
         self.id_visible_flags = msg.data
         self.id_visible_flags = np.array(self.id_visible_flags)
         return 0
-
 
     def repeater(self):
         while not rospy.is_shutdown():
@@ -50,7 +49,6 @@ class generator():
                     continue
             rate.sleep()
         return 0
-
 
 if __name__ == '__main__':
     rospy.init_node('generate_corrected_pose')

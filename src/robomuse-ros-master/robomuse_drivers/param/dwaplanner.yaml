@@ -1,10 +1,12 @@
 # Robot Configuration Parameters
 DWAPlannerROS:
-    acc_lim_x: 0.1
-    acc_lim_y: 0.2
-    acc_lim_th: 0.2
-    #max_vel_x: 0.15
-    min_vel_x: -0.2
+    acc_lim_x: 0.2
+    acc_lim_y: 0.2 #0.2
+    acc_lim_th: 1 #0.2
+    max_vel_x: 0.3
+    max_vel_y: 0.3
+    ####max_vel_x: 0.15
+    ####min_vel_x: -0.2
     max_rotational_vel: 0.2
     min_in_place_rotational_vel: 0.1
     holonomic_robot: false
@@ -30,6 +32,5 @@ DWAPlannerROS:
     scaling_speed: 0.15
     max_scaling_factor: 0.15
 
-
     #move_base
-controller_frequency: 10.0 #The robot can move faster when higher.
+    controller_frequency: 10.0 #The robot can move faster when higher.

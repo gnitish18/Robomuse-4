@@ -1,37 +1,5 @@
-tab="--tab"
-foo=""
-
-cmd="bash -c 'cd ~/Documents/aio\ rem/ && java -jar AioRemoteDesktop3.5.0.jar';bash"
-foo=($tab -e "$cmd")         
-
-gnome-terminal "${foo[@]}"
-foo=""
-
-cmd="bash -c 'roslaunch robomuse_drivers robomuse_depth_reg.launch';bash"
-foo=($tab -e "$cmd")         
-
-gnome-terminal "${foo[@]}"
-foo=""
-
-sleep 5
-
-cmd="bash -c 'roslaunch robomuse_drivers map_rtab.launch';bash"
-foo=($tab -e "$cmd")
-
-gnome-terminal "${foo[@]}"
-
-sleep 5
-
-cmd="bash -c 'roslaunch robomuse_drivers map_move_base.launch';bash"
-foo=($tab -e "$cmd")
-
-gnome-terminal "${foo[@]}"
-
-sleep 5
-
-cmd="bash -c 'cd ';bash"
-foo=($tab -e "$cmd")
-
-gnome-terminal "${foo[@]}"
-
-exit 0
+gnome-terminal --tab -e "bash -c \"roslaunch robomuse_drivers robomuse_depth_reg.launch\"" \
+--tab -e "bash -c \"shellscripts/./rtabmap.sh\"" \
+--tab -e "bash -c \"shellscripts/./mbmap.sh\"" \
+--tab -e "bash -c \"shellscripts/./markmap.sh\"" \
+--tab -e "bash -c \"shellscripts/./manmap.sh\"" \

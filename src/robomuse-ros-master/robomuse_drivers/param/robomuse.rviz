@@ -62,7 +62,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        
+
       Name: Robomuse
       Robot Description: robot_description
       TF Prefix: ""
@@ -76,7 +76,7 @@ Visualization Manager:
         Min Value: -10
         Value: true
       Axis: Z
-     
+
   Views:
     Current:
       Class: rviz/XYOrbit
@@ -97,6 +97,7 @@ Visualization Manager:
       Value: XYOrbit (rviz)
       Yaw: 4.6316
     Saved: ~
+
 Window Geometry:
   Displays:
     collapsed: false

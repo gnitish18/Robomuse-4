@@ -5,9 +5,7 @@
 #import youbot_driver_ros_interface
 #import roslib; roslib.load_manifest('youbot_oodl')
 import rospy
-
 from geometry_msgs.msg import Twist
-
 import sys, select, termios, tty, signal
 
 msg = """
@@ -39,23 +37,21 @@ moveBindings = {
 	       }
 
 speedBindings={
-		'y':(1.2,1.2),
-		'n':(.8,.8),
-		't':(1.2,1),
-		'b':(.8,1),
-		'r':(1,1.2),
-		'v':(1,.8),
+		'y':(1.1,1.1),
+		'n':(0.9,0.9),
+		't':(1.1,1.0),
+		'b':(0.9,1.0),
+		'r':(1.0,1.1),
+		'v':(1.0,0.9),
 	      }
 
-
-
-class TimeoutException(Exception): 
-    pass 
+class TimeoutException(Exception):
+    pass
 
 def getKey():
     def timeout_handler(signum, frame):
         raise TimeoutException()
-    
+
     old_handler = signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(1) #this is the watchdog timing
     tty.setraw(sys.stdin.fileno())
@@ -73,15 +69,15 @@ def getKey():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
     return key
 
-speed = 0.1
-turn = 0.1
+speed = 0.2
+turn = 0.5
 
 def vels(speed,turn):
 	return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
 if __name__=="__main__":
     	settings = termios.tcgetattr(sys.stdin)
-	
+
 	pub = rospy.Publisher('robomuse/cmd_vel', Twist)
 	rospy.init_node('teleop_twist_keyboard')
 
@@ -115,11 +111,11 @@ if __name__=="__main__":
 					break
 
 			twist = Twist()
-			twist.linear.x = x*speed 
-			twist.linear.y = y*speed 
+			twist.linear.x = x*speed
+			twist.linear.y = y*speed
 			twist.linear.z = 0
 
-			twist.angular.x = 0 
+			twist.angular.x = 0
 			twist.angular.y = 0
 			twist.angular.z = th*turn
 			pub.publish(twist)
@@ -134,6 +130,3 @@ if __name__=="__main__":
 		pub.publish(twist)
 
     		termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
-
-
-

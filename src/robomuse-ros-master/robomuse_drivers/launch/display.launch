@@ -1,0 +1,9 @@
+<!-- Choose visualization -->
+<launch>
+    <arg name="rviz" default="true" />
+    <arg name="rtabmapviz" default="false" />
+    <arg name="localization" default="false"/>
+    <arg if="$(arg localization)" name="rtabmap_args"  default=""/>
+    <arg unless="$(arg localization)" name="rtabmap_args"  default="--delete_db_on_start"/>
+    <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(find robomuse_drivers)/config/goal_config.rviz" output="screen"/>
+</launch>

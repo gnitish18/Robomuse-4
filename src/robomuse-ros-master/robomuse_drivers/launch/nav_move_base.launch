@@ -16,5 +16,5 @@
     <remap from="cmd_vel" to="/robomuse/cmd_vel"/>
     <!--remap from="move_base_simple/goal" to="/rtabmap/goal"/-->
   </node>
-  <node name="subcall" pkg="robomuse_drivers" type="subcall.py"/> 
+  <node name="subcall" pkg="robomuse_drivers" type="subcall.py"/>
 </launch>

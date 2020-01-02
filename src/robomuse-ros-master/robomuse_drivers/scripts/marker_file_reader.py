@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import csv
-import os 
+import os
 import roslib
 roslib.load_manifest('aruco_ros')
 import rospy
@@ -14,7 +14,6 @@ from visualization_msgs.msg import Marker
 from std_msgs.msg import Int32
 from std_msgs.msg import UInt32MultiArray as idarray
 import numpy as np
-
 
 class converter():
     def __init__(self):
@@ -37,8 +36,8 @@ class converter():
         j = 0
         for flag in range(1024):
                 try:
-                    test = 0            
-                    with open('/home/srike27/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers/'+self.nst+'/marker'+str(flag)+'.csv',mode = 'r')as f:
+                    test = 0
+                    with open('/home/nitish/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers/'+self.nst+'/marker'+str(flag)+'.csv',mode = 'r')as f:
                         data = csv.reader(f)
                         values = []
                         k = 0
@@ -59,7 +58,7 @@ class converter():
                         poseo = m
                         for pose in values:
                             V = np.linalg.inv(P+Pk)
-                            Kg = np.matmul(Pk,V) 
+                            Kg = np.matmul(Pk,V)
                             diff = (pose - poseo)
                             posen = poseo + np.matmul(Kg,diff)
                             Pk = np.matmul(np.identity(pose.size)-np.matmul(Kg,(np.identity(pose.size))),Pk)
@@ -107,7 +106,6 @@ class converter():
             ff = 1
             rate.sleep()
         return 0
-
 
 if __name__ == '__main__':
     rospy.init_node('aruco_csv_generator')

@@ -5,7 +5,6 @@ global_costmap:
   static_map: true
   always_send_full_costmap: true
 
-
   plugins:
      - {name: static_layer, type: "rtabmap_ros::StaticLayer"}
      - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}

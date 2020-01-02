@@ -1,0 +1,2 @@
+sleep 10
+roslaunch aruco_ros marker_publisher.launch

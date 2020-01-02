@@ -1,0 +1,2 @@
+sleep 5
+roslaunch robomuse_drivers exploration_rtab.launch

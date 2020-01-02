@@ -9,9 +9,9 @@
 		<param name="base_watchdog_timeout" value="0" />
 	</node> -->
 
-  <!--node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" >
-  <remap from="image" to="/camera/depth/image_raw"/>
-</node> -->
+  	<!--node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" >
+  		<remap from="image" to="/camera/depth/image_raw"/>
+	</node> -->
 
 	<!-- Start the Operator to control the simulated robot -->
 	<node name="Operator" pkg="nav2d_operator" type="operator" >

@@ -38,29 +38,28 @@ moveBindings = {
 		'x':(-1,0,0), 	# backward
 		'd':(0,0,-1), 	# turn right on spot
 		'a':(0,0,1), 	# turn left on spot
-	       } 
+	       }
 
 speedBindings={
-		'y':(1.2,1.2),
-		'n':(.8,.8),
-		't':(1.2,1),
-		'b':(.8,1),
-		'r':(1,1.2),
-		'v':(1,.8),
+		'y': (1.1, 1.1),
+		'n': (0.9, 0.9),
+		't': (1.1, 1.0),
+		'b': (0.9, 1.0),
+		'r': (1.0, 1.1),
+		'v': (1.0, 0.9),
 	      }
 
 controlBindings={
         '.':(1)
 }
 
-
-class TimeoutException(Exception): 
+class TimeoutException(Exception):
     pass
 
 def getKey():
     def timeout_handler(signum, frame):
         raise TimeoutException()
-    
+
     old_handler = signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(1) #this is the watchdog timing
     tty.setraw(sys.stdin.fileno())
@@ -78,8 +77,8 @@ def getKey():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
     return key
 
-speed = 0.1
-turn = 0.1
+speed = 0.2
+turn = 0.5
 
 def vels(speed,turn):
 	return "currently:\tspeed %s\tturn %s " % (speed,turn)
@@ -112,11 +111,11 @@ if __name__=="__main__":
 				y = moveBindings[key][1]
 				th = moveBindings[key][2]
 				twist = Twist()
-				twist.linear.x = x*speed 
-				twist.linear.y = y*speed 
+				twist.linear.x = x*speed
+				twist.linear.y = y*speed
 				twist.linear.z = 0
 
-				twist.angular.x = 0 
+				twist.angular.x = 0
 				twist.angular.y = 0
 				twist.angular.z = th*turn
 				pub.publish(twist)
@@ -129,11 +128,11 @@ if __name__=="__main__":
 				status = (status + 1) % 15
 				a.data = 0
 				twist = Twist()
-				twist.linear.x = x*speed 
-				twist.linear.y = y*speed 
+				twist.linear.x = x*speed
+				twist.linear.y = y*speed
 				twist.linear.z = 0
 
-				twist.angular.x = 0 
+				twist.angular.x = 0
 				twist.angular.y = 0
 				twist.angular.z = th*turn
 				pub.publish(twist)
@@ -154,8 +153,6 @@ if __name__=="__main__":
 				if (key == '\x03'):
 					break
 
-			
-
 	except:
 		print e
 
@@ -166,6 +163,3 @@ if __name__=="__main__":
 		pub.publish(twist)
 
     		termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
-
-
-

@@ -10,13 +10,9 @@ def callback(data):
     if(data.data):
         sleep(2)
         flag = 0
-        os.system("python /home/robomuse/Encryption/encryptdir.py encrypt")
+        os.system("python /home/nitish/Encryption/encryptdir.py encrypt")
 rospy.init_node('encryptNode', anonymous=False)
 
 rospy.Subscriber("startencryption", Int8, callback)
 
 rospy.spin()
-   
-
-
-

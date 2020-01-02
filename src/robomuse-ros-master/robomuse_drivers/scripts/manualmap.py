@@ -52,13 +52,13 @@ speedBindings={
 		'v':(1,.8),
 	      }
 
-class TimeoutException(Exception): 
-    pass 
+class TimeoutException(Exception):
+    pass
 
 def getKey():
     def timeout_handler(signum, frame):
         raise TimeoutException()
-    
+
     old_handler = signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(1) #this is the watchdog timing
     tty.setraw(sys.stdin.fileno())
@@ -85,7 +85,7 @@ def vels(speed,turn):
 
 if __name__=="__main__":
     	settings = termios.tcgetattr(sys.stdin)
-	
+
 	pub = rospy.Publisher('robomuse/cmd_vel', Twist)
 	rospy.init_node('teleop_twist_keyboard')
 
@@ -119,11 +119,11 @@ if __name__=="__main__":
 					break
 
 			twist = Twist()
-			twist.linear.x = x*speed 
-			twist.linear.y = y*speed 
+			twist.linear.x = x*speed
+			twist.linear.y = y*speed
 			twist.linear.z = 0
 
-			twist.angular.x = 0 
+			twist.angular.x = 0
 			twist.angular.y = 0
 			twist.angular.z = th*turn
 			pub.publish(twist)
@@ -138,6 +138,3 @@ if __name__=="__main__":
 		pub.publish(twist)
 
     		termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
-
-
-

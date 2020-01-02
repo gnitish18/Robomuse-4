@@ -31,13 +31,13 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 
     def func1(self):
         subprocess.call("shellscripts/./aroundlhc.sh", shell=True)
-    
+
     def func2(self):
         subprocess.call("shellscripts/./teletoauto.sh", shell=True)
-    
+
     def func3(self):
         subprocess.call("shellscripts/./kill.sh", shell=True)
-    
+
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)

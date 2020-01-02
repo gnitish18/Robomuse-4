@@ -1,0 +1,1 @@
+export ROS_MASTER_URI=http://mynibba:11311

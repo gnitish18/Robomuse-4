@@ -17,22 +17,22 @@ n = -1
 
 def cbk0(msg):
     global goals
-    goals[0] = msg 
+    goals[0] = msg
 def cbk1(msg):
     global goals
-    goals[1] = msg 
+    goals[1] = msg
 def cbk2(msg):
     global goals
-    goals[2] = msg 
+    goals[2] = msg
 def cbk3(msg):
     global goals
-    goals[3] = msg 
+    goals[3] = msg
 def cbk4(msg):
     global goals
     goals[4] = msg
 def cbk5(msg):
     global goals
-    goals[5] = msg  
+    goals[5] = msg
 
 def movebase_client(n):
     global goals
@@ -69,7 +69,6 @@ def voicecbk(msg):
     if s == 'ZERO':
         n = 0
 
-
 if __name__ == '__main__':
     i = 0
     rospy.init_node('movebase_client_py')
@@ -94,5 +93,3 @@ if __name__ == '__main__':
         else:
             n = 0
         rospy.sleep(3)
-
-

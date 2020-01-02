@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import csv
-import os 
+import os
 import roslib
 roslib.load_manifest('aruco_ros')
 import rospy
@@ -14,7 +14,6 @@ from visualization_msgs.msg import Marker
 from std_msgs.msg import Int32
 from std_msgs.msg import UInt32MultiArray as idarray
 import numpy as np
-
 
 class converter():
     def __init__(self):
@@ -42,7 +41,7 @@ class converter():
                         self.pos.append(self.ori[1])
                         self.pos.append(self.ori[2])
                         self.pos.append(self.ori[3])
-                        with open('/home/srike27/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers/'+self.nst+'/marker'+str(self.id_dictionary[j])+'.csv', 'a') as csvFile:
+                        with open('/home/nitish/catkin_ws/src/robomuse-ros-master/robomuse_drivers/markers/'+self.nst+'/marker'+str(self.id_dictionary[j])+'.csv', 'a') as csvFile:
 		                    writer = csv.writer(csvFile)
 		                    writer.writerow(self.pos)
                     j = j + 1
@@ -50,7 +49,7 @@ class converter():
                     continue
             rate.sleep()
         return 0
-    
+
     def markerlistcbk(self,msg):
         #print('listcbk')
         visiblemarkers = np.array(msg.data)
@@ -68,14 +67,15 @@ class converter():
                     self.id_visible_flags = np.append(self.id_visible_flags,1)
         return 0
 
-
 if __name__ == '__main__':
     rospy.init_node('aruco_csv_generator')
     rate = rospy.Rate(30)
     a = converter()
     a.repeater()#!/usr/bin/env python
+
+"""
 import csv
-import os 
+import os
 import roslib
 roslib.load_manifest('aruco_ros')
 import rospy
@@ -87,7 +87,6 @@ from visualization_msgs.msg import Marker
 from std_msgs.msg import Int32
 from std_msgs.msg import UInt32MultiArray as idarray
 import numpy as np
-
 
 class converter():
     def __init__(self):
@@ -118,7 +117,7 @@ class converter():
                     continue
             rate.sleep()
         return 0
-    
+
     def markerlistcbk(self,msg):
         #print('listcbk')
         visiblemarkers = np.array(msg.data)
@@ -136,9 +135,9 @@ class converter():
                     self.id_visible_flags = np.append(self.id_visible_flags,1)
         return 0
 
-
 if __name__ == '__main__':
     rospy.init_node('aruco_csv_generator')
     rate = rospy.Rate(30)
     a = converter()
     a.repeater()
+"""

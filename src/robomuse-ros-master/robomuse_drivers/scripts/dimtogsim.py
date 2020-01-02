@@ -2,7 +2,7 @@
 import math
 import roslib
 roslib.load_manifest('robomuse_drivers')
-import sys 
+import sys
 import rospy
 import cv2
 import numpy as np
@@ -29,7 +29,6 @@ class image_converter:
   def func(self,x,a,b,c):
     return a*x*x + b*x + c
 
-
   def deflicker(self):
     global i
     global avg1
@@ -38,7 +37,6 @@ class image_converter:
         avg1 = self.depthimg
         i = 0
     cv2.accumulateWeighted(self.depthimg,avg1,0.3)
-
     return avg1
 
   def findcentroid(self):
@@ -79,12 +77,12 @@ class image_converter:
     return self.r
     return 0
 
-  def callback(self,msg_depth): 
+  def callback(self,msg_depth):
     try:
       global i
-      global avg1 
+      global avg1
       global avg2
-      cv_image = self.bridge.imgmsg_to_cv2(msg_depth, "32FC1")    
+      cv_image = self.bridge.imgmsg_to_cv2(msg_depth, "32FC1")
       cv_image_array = np.array(cv_image, dtype = np.dtype('f8'))
       cv_image_norm = cv2.normalize(cv_image_array, cv_image_array, 0, 1, cv2.NORM_MINMAX)
       cv_image_resized = cv2.resize(cv_image_norm, self.desired_shape, interpolation = cv2.INTER_CUBIC)
@@ -121,7 +119,6 @@ class image_converter:
       self.mask_pub.publish(self.bridge.cv2_to_imgmsg(self.mask, "mono8"))
     except CvBridgeError as e:
       print(e)
-
 
 def main(args):
   ic = image_converter()

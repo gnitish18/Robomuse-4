@@ -17,7 +17,6 @@ def main():
     print ('lower_color = np.array([a1,a2,a3])')
     print ('upper_color = np.array([b1,b2,b3])')
 
-
     # create trackbars for color change
     cv2.createTrackbar('a1',window_name,0,255,nothing)
     cv2.createTrackbar('a2',window_name,0,255,nothing)
@@ -55,9 +54,7 @@ def main():
             cv2.imwrite('Img_screen_res.jpg',res)
             break
 
-
     cv2.destroyAllWindows()
-
 
 #Run Main
 if __name__ == "__main__" :

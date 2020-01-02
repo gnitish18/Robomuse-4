@@ -33,7 +33,7 @@ def movebase_client():
         return client.get_result()
 
 if __name__ == '__main__':
-    global i 
+    global i
     i = 0
     j = 0
     while(j<10):
@@ -84,6 +84,3 @@ if __name__ == '__main__':
         rospy.sleep(15)
         i=0
         j = j+1
-
-
-

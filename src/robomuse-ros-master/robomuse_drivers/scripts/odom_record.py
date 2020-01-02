@@ -35,7 +35,6 @@ def at_closing():
     plt.axis([-1, 1, -1, 5])
     plt.show()
 
-    
 def odom_listener():
 
     # In ROS, nodes are uniquely named. If two nodes with the same

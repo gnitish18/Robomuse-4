@@ -6,12 +6,9 @@
   <!--Start the Arduino controller -->
   <include file="$(find robomuse_drivers)/launch/robomuse_depth_reg.launch"/>
 
-  <include file="$(find robomuse_drivers)/launch/robomuse_rtab.launch"/>
-
-
+  <include file="$(find robomuse_drivers)/launch/nav_rtab.launch"/>
 
   <!-- The move_base node -->
-   <launch>
   <arg name="camera" default="camera"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find robomuse_drivers)/param/costmap_common.yaml" ns="global_costmap" />
@@ -24,13 +21,11 @@
     <remap from="cmd_vel" to="/robomuse/cmd_vel"/>
     <!--remap from="move_base_simple/goal" to="/rtabmap/goal"/-->
   </node>
-
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find robomuse_drivers)/src/forexpt.yaml"/>
-   <!-- Fire up AMCL -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find robomuse_drivers)/maps/SAC_Map.yaml"/>
+  <!-- Fire up AMCL -->
   <include file="$(find robomuse_drivers)/launch/robomuse_amcl.launch"/>
 
-  
   <!-- Start the navigation test -->
-  
+
 </launch>
 

@@ -21,22 +21,22 @@ od = [0,0,0]
 
 def cbk0(msg):
     global goals
-    goals[0] = msg 
+    goals[0] = msg
 def cbk1(msg):
     global goals
-    goals[1] = msg 
+    goals[1] = msg
 def cbk2(msg):
     global goals
-    goals[2] = msg 
+    goals[2] = msg
 def cbk3(msg):
     global goals
-    goals[3] = msg 
+    goals[3] = msg
 def cbk4(msg):
     global goals
     goals[4] = msg
 def cbk5(msg):
     global goals
-    goals[5] = msg  
+    goals[5] = msg
 
 xpos = [7.4,13.0,19.2,24.8,28.5,30.5,30.9,31.2,29.9,27.6,24.5,20.2,16.1,10.2,4.2,-2.9]
 ypos = [-5.7,-6.0,-5.2,-2.8,2.9,7.6,9.6,14.3,19.7,24.4,28.4,31.6,31.6,31.4,29.7,24.4]
@@ -62,7 +62,7 @@ def movebase_client(n):
             rospy.signal_shutdown("Action server not available!")
         else:
             return client.get_result()
- 
+
 def cccbk(msg):
     global flag
     if msg.data == 1:
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     for i in range(100000):
         print ''
     for j in range(16):
-        d = math.sqrt((xpos[j] - od[0])**2 + (ypos[j] - od[0])**2) 
+        d = math.sqrt((xpos[j] - od[0])**2 + (ypos[j] - od[0])**2)
         if d<dist:
             dist = d
             n = j
@@ -105,5 +105,3 @@ if __name__ == '__main__':
             rospy.loginfo("Navigation test finished.")
             n += 1
         rospy.sleep(3)
-
-

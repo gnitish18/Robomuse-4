@@ -35,7 +35,7 @@ class generator():
         self.id_visible_flags = msg.data
         self.id_visible_flags = np.array(self.id_visible_flags)
         return 0
-    
+
     def odomcbk(self,odom):
         self.oy = odom.pose.pose.position.y
         self.ox = odom.pose.pose.position.x
@@ -74,7 +74,7 @@ class generator():
                 V = np.zeros((3,3))
             pose = np.array(self.pose)
             V = np.linalg.inv(P+Pk)
-            Kg = np.matmul(Pk,V) 
+            Kg = np.matmul(Pk,V)
             diff = (pose - poseo)
             posen = poseo + np.matmul(Kg,diff)
             Pk = np.matmul(np.identity(pose.size)-np.matmul(Kg,(np.identity(pose.size))),Pk)
@@ -91,9 +91,8 @@ class generator():
             rate.sleep()
         return 0
 
-
 if __name__ == '__main__':
     rospy.init_node('filtered_pose')
     rate = rospy.Rate(30)
-    a = generator() 
+    a = generator()
     a.repeater()

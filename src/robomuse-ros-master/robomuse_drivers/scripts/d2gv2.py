@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import roslib
 roslib.load_manifest('robomuse_drivers')
-import sys 
+import sys
 import rospy
 import cv2
 import numpy as np
@@ -26,7 +26,6 @@ class image_converter:
     self.kernel = np.ones((5,5),np.uint8)
     self.cv_image = np.zeros((480,640,3))
 
-
   def deflicker(self):
     global i
     global avg1
@@ -46,19 +45,15 @@ class image_converter:
     except CvBridgeError as e:
       print(e)
 
-
-
     #cv2.imshow("Image window", self.cv_image)
     cv2.waitKey(3)
 
-  
-
-  def callback(self,msg_depth): 
+  def callback(self,msg_depth):
     try:
       global i
-      global avg1 
+      global avg1
       global avg2
-      cv_image = self.bridge.imgmsg_to_cv2(msg_depth, "32FC1")    
+      cv_image = self.bridge.imgmsg_to_cv2(msg_depth, "32FC1")
       cv_image_array = np.array(cv_image, dtype = np.dtype('f8'))
       cv_image_norm = cv2.normalize(cv_image_array, cv_image_array, 0, 1, cv2.NORM_MINMAX)
       cv_image_resized = cv2.resize(cv_image_norm, self.desired_shape, interpolation = cv2.INTER_CUBIC)
@@ -90,7 +85,6 @@ class image_converter:
       self.mask_pub.publish(self.bridge.cv2_to_imgmsg(mask, "mono8"))
     except CvBridgeError as e:
       print(e)
-
 
 def main(args):
   ic = image_converter()

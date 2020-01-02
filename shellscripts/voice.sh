@@ -8,5 +8,3 @@ do
 	python lm_test.py
 	sleep 1
 done
-
-

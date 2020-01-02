@@ -6,14 +6,11 @@
   <!--Start the Arduino controller -->
   <include file="$(find robomuse_drivers)/launch/robomuse_depth_reg.launch"/>
 
-  <include file="$(find robomuse_drivers)/launch/nav_rtab.launch"/>  
+  <include file="$(find robomuse_drivers)/launch/nav_rtab.launch"/>
 
   <!-- The move_base node -->
-   <rosparam file="$(find robomuse_drivers)/param/nav_test_params.yaml" command="load"/>
-
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find robomuse_drivers)/maps/lhc_IIT_central_Map2.yaml"/>
-
-
+  <rosparam file="$(find robomuse_drivers)/param/nav_test_params.yaml" command="load"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find robomuse_drivers)/maps/lhc_IIT_central_Map2.yaml"/>
     <arg name="camera" default="camera"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find robomuse_drivers)/param/costmap_common.yaml" ns="global_costmap" />
@@ -27,12 +24,11 @@
     <remap from="cmd_vel" to="/robomuse/cmd_vel"/>
   </node>
 
-
   <!--include file="$(find robomuse_drivers)/launch/robomuse_amcl.launch"/-->
 
   <node pkg="robomuse_drivers" type="nav_test_robomuse_iit_central_actual.py" name="nav_test" output="screen">
     <param name="rest_time" value="5" />
     <param name="fake_test" value="false" />
   </node>
-		
+
 </launch>

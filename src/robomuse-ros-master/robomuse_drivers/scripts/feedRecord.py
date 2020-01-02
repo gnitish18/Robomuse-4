@@ -10,7 +10,7 @@ from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import Int8
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('/home/robomuse/rm4videos/vid1.avi',fourcc, 20.0, (640,480))
+out = cv2.VideoWriter('/home/nitish/rm4videos/vid1.avi',fourcc, 20.0, (640,480))
 
 def callback(data):
   if(data.data):
@@ -35,8 +35,9 @@ class image_converter:
 
     cv2.imshow("Image window", cv_image)
     cv2.waitKey(1)
-      
+
     # os.system("rm /home/robomuse/input/recordedFeed.avi")
+
 def main(args):
   ic = image_converter()
   rospy.init_node('image_converter', anonymous=False)

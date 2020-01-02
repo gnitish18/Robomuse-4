@@ -1,4 +1,4 @@
-#!/usr/bin/env python  
+#!/usr/bin/env python
 import roslib
 roslib.load_manifest('aruco_ros')
 import rospy
@@ -10,7 +10,6 @@ from visualization_msgs.msg import Marker
 from std_msgs.msg import Int32
 from std_msgs.msg import UInt32MultiArray as idarray
 import numpy as np
-
 
 class converter():
     def __init__(self):
@@ -40,7 +39,7 @@ class converter():
                     j = j + 1
                     self.vis_pub.publish(data1)
                 except(IndexError):
-                    continue           
+                    continue
             rate.sleep()
         return 0
 
@@ -96,7 +95,6 @@ class converter():
                     self.id_dictionary = np.append(self.id_dictionary,idi)
                     self.id_visible_flags = np.append(self.id_visible_flags,1)
         return 0
-
 
 if __name__ == '__main__':
     rospy.init_node('aruco_frame_generator')

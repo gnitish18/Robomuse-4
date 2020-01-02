@@ -10,5 +10,4 @@
 		<remap from="/map" to="/rtabmap/grid_map" />
 		<remap from="/cmd_vel" to="/robomuse/cmd_vel" />
 	</node>
-
 </launch>

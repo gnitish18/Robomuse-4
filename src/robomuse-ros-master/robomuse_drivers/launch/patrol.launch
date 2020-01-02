@@ -4,14 +4,12 @@
 
   <!--Start the Arduino controller -->
   <include file="$(find robomuse_drivers)/launch/robomuse_depth_reg.launch"/>
-
-  <include file="$(find robomuse_drivers)/launch/nav_rtab.launch"/>  
+  <include file="$(find robomuse_drivers)/launch/nav_rtab.launch"/>
 
   <!-- The move_base node -->
-   <!--rosparam file="$(find robomuse_drivers)/param/nav_test_params.yaml" command="load"/-->
+  <!--rosparam file="$(find robomuse_drivers)/param/nav_test_params.yaml" command="load"/-->
+  <arg name="camera" default="camera"/>
 
-
-    <arg name="camera" default="camera"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find robomuse_drivers)/param/costmap_common.yaml" ns="global_costmap" />
     <rosparam file="$(find robomuse_drivers)/param/costmap_common.yaml" ns="local_costmap" />
@@ -22,10 +20,7 @@
     <remap from="openni_points" to="/rtabmap/cloud_obstacles"/>
     <remap from="cmd_vel" to="/robomuse/cmd_vel"/>
   </node>
- 
-
 
   <!--include file="$(find robomuse_drivers)/launch/robomuse_amcl.launch"/-->
 
-		
 </launch>

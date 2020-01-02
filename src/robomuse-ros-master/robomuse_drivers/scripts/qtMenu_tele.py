@@ -28,7 +28,7 @@ qtCreatorFile = "/home/nitish/catkin_ws/src/robomuse-ros-master/robomuse_drivers
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class MyApp(QtGui.QMainWindow, Ui_MainWindow):
-    
+
     def func1(self):
         subprocess.call("shellscripts/./kill.sh", shell=True)
 

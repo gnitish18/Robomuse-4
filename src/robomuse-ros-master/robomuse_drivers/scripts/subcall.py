@@ -1,4 +1,4 @@
-#!/usr/bin/env python  
+#!/usr/bin/env python
 import roslib
 roslib.load_manifest('robomuse_drivers')
 import actionlib_msgs.msg
@@ -29,7 +29,6 @@ def repeater():
                         subprocess.call("cd ~/catkin_ws/src/robomuse-ros-master/robomuse_drivers/scripts && ./clearcostmap.sh", shell=True)
                         rospy.sleep(2)
                 rate.sleep()
-
 
 if __name__ == '__main__':
         rospy.init_node('subprocess_caller')

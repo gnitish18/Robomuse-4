@@ -5,6 +5,7 @@
 
 import wx
 import os
+import glob
 
 from os import environ, path
 
@@ -28,6 +29,10 @@ rospy.init_node('menu', anonymous=True)
 
 #End of Speech reCog parameters
 
+"""for file in glob.iglob('robomuse.ui', recursive=True):
+    qtCreatorFile = file
+    print(qtCreatorFile)
+"""
 qtCreatorFile = "/home/nitish/catkin_ws/src/robomuse-ros-master/robomuse_drivers/scripts/robomuse.ui" # Enter file here.
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
@@ -41,7 +46,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.uno.clicked.connect(self.func1)   
+        self.uno.clicked.connect(self.func1)
 
 if __name__ == "__main__":
 

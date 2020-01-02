@@ -1,4 +1,4 @@
-#!/usr/bin/env python  
+#!/usr/bin/env python
 import roslib
 roslib.load_manifest('aruco_ros')
 import rospy
@@ -11,7 +11,6 @@ from pyquaternion import Quaternion as pyqu
 from std_msgs.msg import Int32
 from std_msgs.msg import UInt32MultiArray as idarray
 import numpy as np
-
 
 class converter():
     def __init__(self):
@@ -45,7 +44,7 @@ class converter():
                                 V = np.zeros((7,7))
                             pose = np.array([p.position.x,p.position.y,p.position.z,p.orientation.x,p.orientation.y,p.orientation.z,p.orientation.w])
                             V = np.linalg.inv(P+Pk)
-                            Kg = np.matmul(Pk,V) 
+                            Kg = np.matmul(Pk,V)
                             diff = (pose - poseo)
                             posen = poseo + np.matmul(Kg,diff)
                             Pk = np.matmul(np.identity(pose.size)-np.matmul(Kg,(np.identity(pose.size))),Pk)
@@ -60,7 +59,7 @@ class converter():
                         j = j + 1
                         self.vis_pub.publish(data1)
                     except(IndexError):
-                        continue            
+                        continue
             rate.sleep()
         return 0
 

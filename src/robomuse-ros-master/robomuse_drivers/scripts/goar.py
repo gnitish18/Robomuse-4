@@ -45,5 +45,3 @@ if __name__ == '__main__':
             subprocess.call("./sayhello.sh", shell=True)
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
-
-

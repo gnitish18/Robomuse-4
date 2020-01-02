@@ -1,0 +1,2 @@
+sleep 7
+roslaunch robomuse_drivers exploration_move_base.launch

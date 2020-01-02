@@ -24,8 +24,7 @@ global_frame: map
 rolling_window: false
 resolution: 0.05
 
-
-plugins: 
+plugins:
 - {name: baseLayer,           type: "rtabmap_ros::StaticLayer"}
 - {name: explore_boundary,    type: "frontier_exploration::BoundedExploreLayer"}
 #Can disable sensor layer if gmapping is fast enough to update scans
@@ -37,4 +36,3 @@ explore_boundary:
   frontier_travel_point: middle
   #set to false for gmapping, true if re-exploring a known area
   explore_clear_space: false
-
