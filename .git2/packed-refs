@@ -1,0 +1,11 @@
+# pack-refs with: peeled fully-peeled 
+ddf2684050fb6b79a15abbcf3298c21e4b68bc75 refs/remotes/origin/hydro-devel
+c62a08c75f7f1db8f161a5830ed95d92e9eb82bb refs/remotes/origin/user_chooser
+aa25ddfd5f2e4626b11194a8699fb46b128d67c8 refs/tags/0.2.0
+^01aeec4dd4ac46d5d80fda666e4141d6f5834086
+1668d08f53539ac35531a96ca7afa444cdf85bd5 refs/tags/fuerte
+41dea454eb0d9cb2668586f4227844bec70fe863 refs/tags/groovy
+dfe9596b88eb69c06d43439a177b95aeb7577812 refs/tags/openni_tracker-0.1.0
+048975106b08a9996cca23b1d17b358669a8d936 refs/tags/openni_tracker-0.1.1
+d01f05480123c55f991b843f3fdb84537921d822 refs/tags/openni_tracker-0.1.2
+83004420299f71b8660d2d3b5de0920c1c267493 refs/tags/openni_tracker-0.1.3
