@@ -1,0 +1,7 @@
+image: LHC_Corner_Automap.pgm
+resolution: 0.050000
+origin: [-11.103836, -8.080938, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

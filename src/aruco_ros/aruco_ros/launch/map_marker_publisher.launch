@@ -4,7 +4,6 @@
     <arg name="side"             default="left"/>
     <arg name="ref_frame"       default=""/>  <!-- leave empty and the pose will be published wrt param parent_name -->
 
-
     <node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher">
         <remap from="/camera_info" to="/camera/rgb/camera_info" />
 		<remap from="/image" to="/camera/rgb/image_color" />
@@ -15,5 +14,5 @@
     </node>
     <node pkg="robomuse_drivers" type="marker_frame_generator.py" name="marker_frame_generator"/>
     <node pkg="robomuse_drivers" type="marker_file_saver.py" name="marker_file_saver"/>
-</launch>
 
+</launch>

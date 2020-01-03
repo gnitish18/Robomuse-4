@@ -1,1 +1,1 @@
-gnome-terminal --tab -e "bash -c \"rosrun robomuse_drivers around.py\""
+gnome-terminal --tab -e "bash -c \"rosrun robomuse_drivers LHC_Surveillance_Right.py\""

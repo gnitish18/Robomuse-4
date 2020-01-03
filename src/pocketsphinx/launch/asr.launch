@@ -5,8 +5,8 @@
     -->
     <arg name="input" default=":default"/>
     <arg name="hmm" default=":default"/>
-    <arg name="dict" default="$(find pocketsphinx)/demo/3038.dic"/>
-    <arg name="lm" default="$(find pocketsphinx)/demo/3038.lm"/>
+    <arg name="dict" default="$(find pocketsphinx)/demo/robomuse.dic"/>
+    <arg name="lm" default="$(find pocketsphinx)/demo/robomuse.lm"/>
     <arg name="gram" default="$(find pocketsphinx)/demo/asr.gram"/>
     <arg name="grammar" default="$(find pocketsphinx)/demo/asr.gram"/>
     <arg name="rule" default=":default"/>

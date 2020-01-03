@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>751</width>
-    <height>417</height>
+    <height>529</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -448,7 +448,7 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>150</height>
+        <height>100</height>
        </size>
       </property>
       <property name="font">
@@ -460,6 +460,26 @@
       </property>
       <property name="text">
        <string>START</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="map">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>36</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>MAP</string>
       </property>
      </widget>
     </item>

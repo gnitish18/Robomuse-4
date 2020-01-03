@@ -1,0 +1,7 @@
+image: LHC_Surveillance_Complete.pgm
+resolution: 0.050000
+origin: [-28.099445, -10.251539, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

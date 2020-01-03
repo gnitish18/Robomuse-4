@@ -42,11 +42,15 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
     def func1(self):
         subprocess.call("shellscripts/./nav.sh", shell=True)
 
+    def func2(self):
+        subprocess.call("shellscripts/./exploremap.sh", shell=True)
+
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         self.uno.clicked.connect(self.func1)
+        self.map.clicked.connect(self.func2)
 
 if __name__ == "__main__":
 

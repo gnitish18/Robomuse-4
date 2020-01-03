@@ -4,17 +4,27 @@ import os
 
 import rospy
 
+import subprocess
 from std_msgs.msg import String
 from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
+
+def number(var):
+    if var == 'ZERO' or var == 'ONE' or var == 'TWO' or var == 'THREE' or var == 'FOUR' or var == 'FIVE' or var == 'SIX' or var == 'SEVEN' or var == 'EIGHT' or var == 'NINE' or var == 'TEN' or var == 'STOP' or var == 'DOCK' or var == 'UNDOCK':
+        return 1
+    else:
+        return 0
 
 class ASRTest(object):
     """Class to add jsgf grammar functionality."""
 
     def __init__(self):
 
+        self.start = 0
+        self.flag = 0
         # Initializing publisher with buffer size of 10 messages
         self.pub_ = rospy.Publisher("grammar_data", String, queue_size=10)
+        # self.pub1 = rospy.Publisher("local_grammar_data",String, queue_size=10)
         # initialize node
         rospy.init_node("asr_control")
         # Call custom function on node shutdown
@@ -135,8 +145,40 @@ class ASRTest(object):
             if not self.in_speech_bf:
                 self.decoder.end_utt()
                 if self.decoder.hyp() != None:
-                    rospy.loginfo('OUTPUT: \"' + self.decoder.hyp().hypstr + '\"')
-                    self.pub_.publish(self.decoder.hyp().hypstr)
+                    # rospy.loginfo('OUTPUT: \"' + self.decoder.hyp().hypstr + '\"')
+                    # self.pub_.publish(self.decoder.hyp().hypstr)
+                    #rospy.loginfo('OUTPUT: \"' + self.decoder.hyp().hypstr + '\"')
+                    if self.decoder.hyp().hypstr == 'ROBOMUSE':
+                        self.flag = 1
+                        print 'ROBOMUSE INITIALIZED'
+                        subprocess.call(
+                            "espeak 'robomuse initialized'", shell=True)
+                        #self.pub1.publish(self.decoder.hyp().hypstr)
+                    if self.decoder.hyp().hypstr == 'START' and self.flag == 0:
+                        print 'INITIATE ROBOMUSE BEFORE STARTING'
+                        subprocess.call(
+                            "espeak 'initiate robomuse before starting'", shell=True)
+                        #self.pub1.publish(self.decoder.hyp().hypstr)
+                    if self.decoder.hyp().hypstr == 'START' and self.flag == 1:
+                        self.start = 1
+                        print 'STARTING.........'
+                        subprocess.call("espeak 'starting'", shell=True)
+                        rospy.sleep(1)
+                        print 'READY TO COMPLY'
+                        subprocess.call("espeak 'ready to comply'", shell=True)
+                        #self.pub1.publish(self.decoder.hyp().hypstr)
+                    if self.decoder.hyp().hypstr == 'SHUTDOWN' and self.flag == 1:
+                        self.start = 0
+                        self.flag = 0
+                        print 'SHUTTING ROBOMUSE DOWN'
+                        subprocess.call(
+                            "espeak 'shutting robomuse down'", shell=True)
+                        #self.pub1.publish(self.decoder.hyp().hypstr)
+                    if number(self.decoder.hyp().hypstr) and self.start == 1:
+                        self.pub_.publish(self.decoder.hyp().hypstr)
+                        print self.decoder.hyp().hypstr
+                    #else:
+                        #self.pub1.publish(self.decoder.hyp().hypstr)
                 self.decoder.start_utt()
 
     @staticmethod
@@ -145,7 +187,6 @@ class ASRTest(object):
         # command executed after Ctrl+C is pressed
         rospy.loginfo("Stop ASRControl")
         rospy.sleep(1)
-
 
 if __name__ == "__main__":
     ASRTest()
