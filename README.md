@@ -1,5 +1,5 @@
 # Robomuse-4
-<h2> Autonomous Robot Platform of IIT Delhi </h2>
+<h2> Autonomous Mobile Robot Platform of IIT Delhi </h2>
 <h3> Setting up the Robot in your laptop:</h3>
 <p> Clone the repository and copy all the files of src into the src in your catkin workspace.</p>
 <p> Copy the shellscripts folder and .sh files into your home directory.</p>
